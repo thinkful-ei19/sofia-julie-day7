@@ -15,16 +15,18 @@ const store = {
 const fetchVideos = function(searchTerm, callback) {
   const query = {
     part: 'snippet',
-    q: searchTerm,
-    key: API_KEY
+    q: `${searchTerm}`,
+    key: API_KEY,
+    maxResults: 5
   };
 
   $.getJSON(BASE_URL, query, callback);
 };
 
 fetchVideos('batman', (response) => {
-  console.log(JSON.stringify(response));
+  console.log(JSON.stringify(decorateResponse(response), null, 4));
 });
+
 // TASK:
 // 1. Create a `decorateResponse` function that receives the Youtube API response
 // 2. Map through the response object's `items` array
@@ -34,8 +36,18 @@ fetchVideos('batman', (response) => {
 // TEST IT! Grab an example API response and send it into the function - make sure
 // you get back the object you want.
 const decorateResponse = function(response) {
-
+  store.videos = response.items.map(item => {
+    return {
+      id: item.id.videoId,
+      title: item.snippet.title,
+      thumbnail: item.snippet.thumbnails.default.url
+      //thumbnail is now a string, not a URL
+    };
+  } 
+  );
+  render();
 };
+
 // decorateResponse(sample);
 
 // TASK:
@@ -43,7 +55,10 @@ const decorateResponse = function(response) {
 // 2. Using the object, return an HTML string containing all the expected data
 // TEST IT!
 const generateVideoItemHtml = function(video) {
-
+  //take video as argument
+  return `<li><span>${video.id}</span><span>${video.title}</span></li>`;
+  //url to get image tag to inject image in here
+  //call within render function
 };
 
 // TASK:
@@ -51,7 +66,7 @@ const generateVideoItemHtml = function(video) {
 // objects and sets the array as the value held in store.items
 // TEST IT!
 const addVideosToStore = function(videos) {
-
+  
 };
 
 // TASK:
@@ -60,7 +75,8 @@ const addVideosToStore = function(videos) {
 // 3. Add your array of DOM elements to the appropriate DOM element
 // TEST IT!
 const render = function() {
-
+  const htmlResult = store.videos.map(item => generateVideoItemHtml(item));
+  $('.results').html(htmlResult);
 };
 
 // TASK:
@@ -75,7 +91,6 @@ const render = function() {
 //   g) Inside the callback, run the `render` function 
 // TEST IT!
 const handleFormSubmit = function() {
-
 };
 
 // When DOM is ready:
