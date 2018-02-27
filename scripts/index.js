@@ -1,3 +1,4 @@
+'use strict';
 
 const API_KEY = 'AIzaSyBJ6fYAH1KthebJJ604HY445JI5RgnKUmI';
 const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
