@@ -56,7 +56,10 @@ const decorateResponse = function(response) {
 // TEST IT!
 const generateVideoItemHtml = function(video) {
   //take video as argument
-  return `<li><span>${video.id}</span><span>${video.title}</span></li>`;
+  return `<li id = ${video.id}>
+    <img src=${video.thumbnail}>
+    <span>${video.title}</span>
+    </li>`;
   //url to get image tag to inject image in here
   //call within render function
 };
