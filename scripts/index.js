@@ -1,7 +1,7 @@
 'use strict';
 
 const API_KEY = 'AIzaSyBJ6fYAH1KthebJJ604HY445JI5RgnKUmI';
-const BASE_URL = 'https://www.googleapis.com/youtube/v3/search'
+const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 // TASK: Add the Youtube Search Base URL here:
 // Documentation is here: https://developers.google.com/youtube/v3/docs/search/list#usage
 const store = {
@@ -36,7 +36,7 @@ fetchVideos('batman', (response) => {
 const decorateResponse = function(response) {
 
 };
-decorateResponse(sample);
+// decorateResponse(sample);
 
 // TASK:
 // 1. Create a `generateVideoItemHtml` function that receives the decorated object
