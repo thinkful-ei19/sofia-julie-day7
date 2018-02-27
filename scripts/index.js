@@ -14,8 +14,8 @@ const store = {
 // TEST IT! Execute this function and console log the results inside the callback.
 const fetchVideos = function(searchTerm, callback) {
   const query = {
-    part: 'snippet',
     q: `${searchTerm}`,
+    part: 'snippet',
     key: API_KEY,
     maxResults: 5
   };
@@ -23,9 +23,9 @@ const fetchVideos = function(searchTerm, callback) {
   $.getJSON(BASE_URL, query, callback);
 };
 
-fetchVideos('batman', (response) => {
-  console.log(JSON.stringify(decorateResponse(response), null, 4));
-});
+// fetchVideos('cat', (response) => {
+//   console.log(JSON.stringify(decorateResponse(response), null, 4));
+// });
 
 // TASK:
 // 1. Create a `decorateResponse` function that receives the Youtube API response
@@ -69,7 +69,7 @@ const generateVideoItemHtml = function(video) {
 // objects and sets the array as the value held in store.items
 // TEST IT!
 const addVideosToStore = function(videos) {
-  
+  store.videos = videos;
 };
 
 // TASK:
@@ -77,7 +77,9 @@ const addVideosToStore = function(videos) {
 // 2. Map through `store.videos`, sending each `video` through your `generateVideoItemHtml`
 // 3. Add your array of DOM elements to the appropriate DOM element
 // TEST IT!
+
 const render = function() {
+  console.log("here");
   const htmlResult = store.videos.map(item => generateVideoItemHtml(item));
   $('.results').html(htmlResult);
 };
@@ -94,10 +96,17 @@ const render = function() {
 //   g) Inside the callback, run the `render` function 
 // TEST IT!
 const handleFormSubmit = function() {
+  $('#submitButton').on('click', function(event) {
+    event.preventDefault();
+    const searchTerm = $('#search-term').val();
+    fetchVideos(searchTerm, decorateResponse);
+  });
 };
 
 // When DOM is ready:
 $(function () {
   // TASK:
   // 1. Run `handleFormSubmit` to bind the event listener to the DOM
+  handleFormSubmit();
+
 });
