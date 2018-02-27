@@ -1,4 +1,4 @@
-const API_KEY = 'YOUR_KEY_HERE';
+const API_KEY = 'AIzaSyBJ6fYAH1KthebJJ604HY445JI5RgnKUmI';
 
 const store = {
   videos: []
