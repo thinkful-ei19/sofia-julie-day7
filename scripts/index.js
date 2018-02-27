@@ -1,8 +1,21 @@
+
 const API_KEY = 'AIzaSyBJ6fYAH1KthebJJ604HY445JI5RgnKUmI';
 
 const store = {
+
   videos: []
 };
+
+const query = {
+  part: 'snippet',
+  q: 'batman',
+  key: API_KEY
+};
+
+$.getJSON(BASE_URL, query, function(response) {
+  console.log(response);
+})
+
 
 // TASK: Add the Youtube Search Base URL here:
 // Documentation is here: https://developers.google.com/youtube/v3/docs/search/list#usage
