@@ -23,7 +23,7 @@ const fetchVideos = function(searchTerm, callback) {
 };
 
 fetchVideos('batman', (response) => {
-  console.log(JSON.stringify.response);
+  console.log(JSON.stringify(response));
 });
 // TASK:
 // 1. Create a `decorateResponse` function that receives the Youtube API response
