@@ -1,36 +1,30 @@
 'use strict';
 
 const API_KEY = 'AIzaSyBJ6fYAH1KthebJJ604HY445JI5RgnKUmI';
-
-const store = {
-
-  videos: []
-};
-
-const query = {
-  part: 'snippet',
-  q: 'batman',
-  key: API_KEY
-};
-
-$.getJSON(BASE_URL, query, function(response) {
-  console.log(response);
-})
-
-
+const BASE_URL = 'https://www.googleapis.com/youtube/v3/search'
 // TASK: Add the Youtube Search Base URL here:
 // Documentation is here: https://developers.google.com/youtube/v3/docs/search/list#usage
-const BASE_URL = '';
-
+const store = {
+  videos: []
+};
 // TASK:
 // 1. Create a `fetchVideos` function that receives a `searchTerm` and `callback`
 // 2. Use `searchTerm` to construct the right query object based on the Youtube API docs
 // 3. Make a getJSON call using the query object and sending the provided callback in as the last argument
 // TEST IT! Execute this function and console log the results inside the callback.
 const fetchVideos = function(searchTerm, callback) {
+  const query = {
+    part: 'snippet',
+    q: searchTerm,
+    key: API_KEY
+  };
 
+  $.getJSON(BASE_URL, query, callback);
 };
 
+fetchVideos('batman', (response) => {
+  console.log(JSON.stringify.response);
+});
 // TASK:
 // 1. Create a `decorateResponse` function that receives the Youtube API response
 // 2. Map through the response object's `items` array
@@ -42,6 +36,7 @@ const fetchVideos = function(searchTerm, callback) {
 const decorateResponse = function(response) {
 
 };
+decorateResponse(sample);
 
 // TASK:
 // 1. Create a `generateVideoItemHtml` function that receives the decorated object
